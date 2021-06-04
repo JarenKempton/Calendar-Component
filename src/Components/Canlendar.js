@@ -13,6 +13,7 @@ function Calendar() {
     const [ dateObject, setDateObject ] = useState(Format.msToDateObject(dateState));
     let date = Format.msToDateObject(dateState);
     // accessed new branch from different file location
+    // added new line of code
     const fadeNonMonthDays = (topRow, bottomRow) => {
         if(topRow){
             for(let i=0; i<7; i++){
