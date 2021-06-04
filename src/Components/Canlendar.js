@@ -12,9 +12,9 @@ function Calendar() {
     const [ monthState, setMonthState ] = useState(new Date(dateState).getMonth());
     const [ dateObject, setDateObject ] = useState(Format.msToDateObject(dateState));
     let date = Format.msToDateObject(dateState);
-    // accessed new branch from different file location
-    // added new line of code
+    // accessed new branch from different file location and added on to this feature
     // Added new crazy awesome feature
+    // added new feature here that replaced an existing feature
     const fadeNonMonthDays = (topRow, bottomRow) => {
         if(topRow){
             for(let i=0; i<7; i++){
