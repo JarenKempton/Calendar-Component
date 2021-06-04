@@ -12,7 +12,7 @@ function Calendar() {
     const [ monthState, setMonthState ] = useState(new Date(dateState).getMonth());
     const [ dateObject, setDateObject ] = useState(Format.msToDateObject(dateState));
     let date = Format.msToDateObject(dateState);
-
+// added new brach
     const fadeNonMonthDays = (topRow, bottomRow) => {
         if(topRow){
             for(let i=0; i<7; i++){
