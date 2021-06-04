@@ -15,6 +15,7 @@ function Calendar() {
     // accessed new branch from different file location and added on to this feature
     // Added new crazy awesome feature
     // added new feature here that replaced an existing feature
+    // This is another feature
     const fadeNonMonthDays = (topRow, bottomRow) => {
         if(topRow){
             for(let i=0; i<7; i++){
