@@ -37,10 +37,10 @@ const Format = {
         date.setSeconds(0);
         date.setMilliseconds(0);
         let dateObject = {};
-        for(let i = 0; i<35; i++){
+        for(let i = 0; i<42; i++){
             let string = `c${i + 1}`;
             dateObject[string] = date.getDate();
-            if(date.getDate() === today.getDate() && date.getDay() === today.getDay() && date.getMonth() === today.getMonth()){
+            if(date.getDate() === today.getDate() && date.getDay() === today.getDay() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear() && i <= 31){
                 dateObject['currentDay'] = i+1
             } 
             date.setDate(date.getDate() + 1);

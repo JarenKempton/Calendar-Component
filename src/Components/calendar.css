@@ -1,7 +1,7 @@
 .calendar-container{
     background-color: #212838;
     width: 400px;
-    height: 400px;
+    height: 460px;
     margin: 0 auto;
     margin-top: 100px;
     transform: scale(0.7);
@@ -65,12 +65,5 @@
     background-color: #414755;
     animation: ease-in 0.5s;
 }
-.currentDay{
-    background-color: #4072fc;
-    border-radius: 100%;
-}
 
-/* .day-header th {
-    display: flex;
-    justify-content: space-around;
-} */
+
