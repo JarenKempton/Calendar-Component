@@ -10,7 +10,6 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 function Calendar() {
     const [ dateState, setDateState ] = useState(Date.now());
     const [ monthState, setMonthState ] = useState(new Date(dateState).getMonth());
-    const [ dateObject, setDateObject ] = useState(Format.msToDateObject(dateState));
     let date = Format.msToDateObject(dateState);
     // accessed new branch from different file location
     // added new line of code
@@ -19,7 +18,7 @@ function Calendar() {
         if(topRow){
             for(let i=0; i<7; i++){
                 console.log(`Top row: ${topRow.childNodes[i].innerHTML}`);
-                console.log(dateObject);
+                console.log(date)
                 if(topRow.childNodes[i].innerHTML > 7){
                     topRow.childNodes[i].style.color="#9599a1";
                 } else {
@@ -47,27 +46,28 @@ function Calendar() {
         }  
         let firstWeek = document.getElementById('first-week');
         let lastWeek = document.getElementById('last-week');
+        console.log(date)
         fadeNonMonthDays(firstWeek, lastWeek);
       }, [])
       
       const previousMonth = () => {
         setDateState(new Date().setMonth(monthState - 1));
         setMonthState(new Date(dateState).getMonth());
-        console.log(date);  
-        fadeNonMonthDays(document.getElementById('first-week'), document.getElementById('last-week'))      
+        date = Format.msToDateObject(dateState);
+        console.log(Format.msToDate(dateState));  
     }
 
       const nextMonth = () => {
         setDateState(new Date().setMonth(monthState + 1));
         setMonthState(new Date(dateState).getMonth());
-        console.log(monthState);
-        fadeNonMonthDays(document.getElementById('first-week'), document.getElementById('last-week'))      
+        console.log(date);
     } 
     return (
         <ThemeProvider theme={theme} >
             <div className="calendar-container">
                 <div className="calendar-switch-buttons"><Button onClick={previousMonth} className="arrowButton" theme={theme} type="light" variant="contained" color="secondary"><ArrowLeftIcon /></Button><div className="calendar-header">{Format.msToDate(dateState)}</div><Button onClick={nextMonth} className="arrowButton" variant="contained" color="secondary"><ArrowRightIcon /></Button></div>
                 <table className='calendar-table'>
+                    {console.log(date)}
                     <tbody>
                         <tr className="day-header"><th>Sun</th><th>Mon</th><th>Tues</th><th>Wed</th><th>Thurs</th><th>Fri</th><th>Sat</th></tr>
                         <tr id="first-week" className="week week1"><td id='c1'>{date.c1}</td><td id='c2'>{date.c2}</td><td id='c3'>{date.c3}</td><td id='c4'>{date.c4}</td><td id='c5'>{date.c5}</td><td id='c6'>{date.c6}</td><td id='c7'>{date.c7}</td></tr >
