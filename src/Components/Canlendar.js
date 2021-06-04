@@ -8,53 +8,59 @@ import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 function Calendar() {
-    const [ dateState, setDateState ] = useState();
-    const [ monthState, setMonthState ] = useState(new Date(Date.now()).getMonth());
+    const [ dateState, setDateState ] = useState(Date.now());
+    const [ monthState, setMonthState ] = useState(new Date(dateState).getMonth());
+    const [ dateObject, setDateObject ] = useState(Format.msToDateObject(dateState));
     let date = Format.msToDateObject(dateState);
 
     const fadeNonMonthDays = (topRow, bottomRow) => {
-        
-        for(let i=0; i<7; i++){
-            if(topRow.childNodes[i].innerHTML > 7){
-                topRow.childNodes[i].style.color="#9599a1";
-        
-            } 
+        if(topRow){
+            for(let i=0; i<7; i++){
+                console.log(`Top row: ${topRow.childNodes[i].innerHTML}`);
+                console.log(dateObject);
+                if(topRow.childNodes[i].innerHTML > 7){
+                    topRow.childNodes[i].style.color="#9599a1";
+                } else {
+                    topRow.childNodes[i].style.color='#ffffff';
+                }
+            }
         }
-        for(let i=0; i<7; i++){
-        
-            if(bottomRow.childNodes[i].innerHTML < 24){
-                bottomRow.childNodes[i].style.color="#9599a1";
-        
+        if(bottomRow){
+            for(let i=0; i<7; i++){
+                console.log(`Bottom row: ${bottomRow.childNodes[i].innerHTML}`)
+                if(bottomRow.childNodes[i].innerHTML < 24){
+                    bottomRow.childNodes[i].style.color="#9599a1";
+            
+                } else {
+                    bottomRow.childNodes[i].style.color='#ffffff';
+                }
             }
         }
     }
     useEffect(() => {
-        setDateState(Date.now())
         let currentDay = document.getElementById(`c${date.currentDay}`);
         if (currentDay) {
             currentDay.classList.add('currentDay');
+            console.log(currentDay); 
         }  
-        console.log(currentDay); 
         let firstWeek = document.getElementById('first-week');
         let lastWeek = document.getElementById('last-week');
         fadeNonMonthDays(firstWeek, lastWeek);
       }, [])
       
       const previousMonth = () => {
-        setMonthState(monthState - 1);
-        setDateState(new Date().setMonth(monthState));
-        console.log(monthState);         
-        let firstWeek = document.getElementById('first-week');
-        let lastWeek = document.getElementById('last-week');
-        fadeNonMonthDays(firstWeek, lastWeek);      }
+        setDateState(new Date().setMonth(monthState - 1));
+        setMonthState(new Date(dateState).getMonth());
+        console.log(date);  
+        fadeNonMonthDays(document.getElementById('first-week'), document.getElementById('last-week'))      
+    }
 
       const nextMonth = () => {
-        setMonthState(monthState + 1);
         setDateState(new Date().setMonth(monthState + 1));
+        setMonthState(new Date(dateState).getMonth());
         console.log(monthState);
-        let firstWeek = document.getElementById('first-week');
-        let lastWeek = document.getElementById('last-week');
-        fadeNonMonthDays(firstWeek, lastWeek);      } 
+        fadeNonMonthDays(document.getElementById('first-week'), document.getElementById('last-week'))      
+    } 
     return (
         <ThemeProvider theme={theme} >
             <div className="calendar-container">
